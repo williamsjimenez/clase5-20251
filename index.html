@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemas de Extorsión Local - Gobernanza de la Seguridad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            color: #333333;
+            overflow: hidden;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            padding: 60px 40px;
+            text-align: center;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #722f37;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            color: #722f37;
+            font-weight: 300;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #722f37;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #666666;
+            font-weight: 300;
+        }
+
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .objective-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .objective-card:hover {
+            border-color: #722f37;
+            box-shadow: 0 4px 12px rgba(114, 47, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            background: #722f37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .characteristic-box {
+            background: #ffffff;
+            border-left: 4px solid #722f37;
+            padding: 1.5rem;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .characteristic-box:hover {
+            transform: translateX(5px);
+        }
+
+        .characteristic-box h4 {
+            color: #722f37;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .characteristic-box p {
+            color: #666666;
+            font-size: 0.9rem;
+        }
+
+        .structure-diagram {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .structure-column {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+
+        .structure-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #722f37;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .structure-item {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            color: #555555;
+            border-left: 2px solid #722f37;
+        }
+
+        .gota-gota-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .bullet-points {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .bullet-points li {
+            margin: 1.5rem 0;
+            font-size: 1rem;
+            line-height: 1.8;
+            padding-left: 1rem;
+            border-left: 2px solid #722f37;
+            list-style: none;
+        }
+
+        .highlight {
+            color: #722f37;
+            font-weight: 600;
+        }
+
+        .case-study-diagram {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .cycle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cycle-arrow {
+            font-size: 1.5rem;
+            color: #722f37;
+            margin: 0 0.5rem;
+        }
+
+        .cycle-step {
+            background: #ffffff;
+            border: 2px solid #722f37;
+            border-radius: 4px;
+            padding: 1rem;
+            min-width: 150px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #333333;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: #ffffff;
+            border: 1px solid #722f37;
+            color: #722f37;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: #722f37;
+            color: #ffffff;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #ccc;
+            color: #ccc;
+        }
+
+        .nav-btn:disabled:hover {
+            background: #ffffff;
+            color: #ccc;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        .university-logo {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            font-size: 0.75rem;
+            color: #999999;
+            line-height: 1.4;
+        }
+
+        .question-mark {
+            font-size: 4rem;
+            color: #722f37;
+            margin: 2rem 0;
+            font-weight: 300;
+        }
+
+        .final-question {
+            background: #f8f9fa;
+            border-left: 4px solid #722f37;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .final-question p {
+            color: #555555;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cycle-container {
+                flex-direction: column;
+            }
+            
+            .cycle-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .structure-diagram {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+        </div>
+
+        <!-- Slide 1: Título -->
+        <div class="slide active">
+            <h1>Gobernanza de la Seguridad</h1>
+            <p class="subtitle">¿Cómo crear y preservar la seguridad como bien colectivo?</p>
+            <h2 style="margin-top: 4rem;">Sistemas de Extorsión Local</h2>
+            <p class="subtitle">Williams Jiménez-García & Gonzalo Vergara</p>
+            <div style="margin-top: 3rem; font-size: 1rem; color: #999999;">
+                <p>OP03 – Governance Case Analysis</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Objetivos -->
+        <div class="slide">
+            <h2>Objetivos de Aprendizaje</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="icon">1</div>
+                    <h3>Comprender los sistemas de extorsión local</h3>
+                    <p>Analizar qué son estos sistemas, cómo funcionan y quiénes son los principales actores involucrados</p>
+                </div>
+                <div class="objective-card">
+                    <div class="icon">2</div>
+                    <h3>Explorar el impacto en la seguridad y la gobernanza</h3>
+                    <p>Discutir cómo estos sistemas afectan la seguridad ciudadana y la gobernanza en nuestras comunidades</p>
+                </div>
+                <div class="objective-card">
+                    <div class="icon">3</div>
+                    <h3>Estudiar un caso específico</h3>
+                    <p>Análisis del caso de Altavista en Medellín y comparación con otros contextos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Definición -->
+        <div class="slide">
+            <h2>Definición de Sistemas de Extorsión Local</h2>
+            <div class="characteristics-grid">
+                <div class="characteristic-box">
+                    <h4>CONTROL TERRITORIAL</h4>
+                    <p>Los grupos criminales dominan ciertas áreas, imponiendo su autoridad y limitando la capacidad de intervención del Estado</p>
+                </div>
+                <div class="characteristic-box">
+                    <h4>IMPOSICIÓN DE PAGOS</h4>
+                    <p>Los extorsionadores exigen pagos regulares, conocidos como 'vacunas', que los residentes y comerciantes deben realizar</p>
+                </div>
+                <div class="characteristic-box">
+                    <h4>USO DE LA VIOLENCIA</h4>
+                    <p>La amenaza de violencia es una herramienta clave para asegurar el cumplimiento de las demandas extorsivas</p>
+                </div>
+                <div class="characteristic-box">
+                    <h4>ECONOMÍA INFORMAL</h4>
+                    <p>Estos sistemas están vinculados a actividades ilícitas como el tráfico de drogas y la prostitución</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Estructura -->
+        <div class="slide">
+            <h2>Estructura de los Sistemas de Extorsión Local</h2>
+            <div class="structure-diagram">
+                <div class="structure-column">
+                    <div class="structure-title">Actores</div>
+                    <div class="structure-item">Extorsionadores</div>
+                    <div class="structure-item">Víctimas</div>
+                    <div class="structure-item">Autoridades</div>
+                </div>
+                <div class="structure-column">
+                    <div class="structure-title">Control</div>
+                    <div class="structure-item">Amenazas y Violencia</div>
+                    <div class="structure-item">Coerción Económica</div>
+                    <div class="structure-item">Reclutamiento de Jóvenes</div>
+                </div>
+                <div class="structure-column">
+                    <div class="structure-title">Ciclo</div>
+                    <div class="structure-item">Identificación de Víctima</div>
+                    <div class="structure-item">Demanda de Pago</div>
+                    <div class="structure-item">Cobro de Pagos</div>
+                    <div class="structure-item">Aplicación de Sanciones</div>
+                </div>
+                <div class="structure-column">
+                    <div class="structure-title">Impacto</div>
+                    <div class="structure-item">Miedo y Desconfianza</div>
+                    <div class="structure-item">Desplazamiento Económico</div>
+                    <div class="structure-item">Debilitamiento de Gobernanza</div>
+                </div>
+                <div class="structure-column">
+                    <div class="structure-title">Gobernanza</div>
+                    <div class="structure-item">Gobernanza Alternativa</div>
+                    <div class="structure-item">Alineación con Gobierno</div>
+                    <div class="structure-item">Oposición al Gobierno</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Gota-Gota -->
+        <div class="slide">
+            <h2>Gota-Gota</h2>
+            <div class="gota-gota-info">
+                <ul class="bullet-points">
+                    <li><span class="highlight">¿Qué es?</span> Sistema de préstamos informales que opera al margen de la ley con tasas de interés extremadamente altas (hasta 20% mensual)</li>
+                    <li><span class="highlight">Razones de surgimiento:</span> Exclusión financiera, informalidad laboral, pobreza, vulnerabilidad social y necesidad urgente de dinero</li>
+                    <li><span class="highlight">Funcionamiento:</span> Préstamos rápidos sin requisitos formales, pagos diarios obligatorios y prácticas de cobro coercitivas</li>
+                    <li><span class="highlight">Estructuras criminales:</span> Conectado con redes de tráfico de drogas, extorsión y otras actividades ilícitas para lavado de dinero</li>
+                    <li><span class="highlight">Impacto en gobernanza:</span> Debilita la autoridad estatal, normaliza la ilegalidad y perpetúa ciclos de violencia y exclusión</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Caso Altavista -->
+        <div class="slide">
+            <h2>Caso de estudio: Altavista</h2>
+            <div class="case-study-diagram">
+                <h3 style="margin-bottom: 2rem;">Teoría de los Mercados de Violencia</h3>
+                <div class="cycle-container">
+                    <div class="cycle-step">Población Empobrecida</div>
+                    <div class="cycle-arrow">→</div>
+                    <div class="cycle-step">Exclusión Social</div>
+                    <div class="cycle-arrow">→</div>
+                    <div class="cycle-step">Violencia Cultural</div>
+                    <div class="cycle-arrow">→</div>
+                    <div class="cycle-step">Violencia Estructural</div>
+                </div>
+            </div>
+            <ul class="bullet-points" style="margin-top: 2rem;">
+                <li><span class="highlight">Gobernanza y Control Territorial:</span> Los grupos establecen sistemas de autoridad paralelos que compiten con el Estado</li>
+                <li><span class="highlight">Dinámica de Extorsión:</span> Pagos obligatorios de 'vacunas' y control social mediante violencia e intimidación</li>
+                <li><span class="highlight">Similitudes globales:</span> Patrones similares observados en Caracas, San Salvador, Ciudad Juárez y Lagos</li>
+                <li><span class="highlight">Diferencias contextuales:</span> Las respuestas estatales y niveles de intervención varían según el contexto local</li>
+            </ul>
+        </div>
+
+        <!-- Slide 7: Impacto y Conclusiones -->
+        <div class="slide">
+            <h2>Impacto en la Gobernanza</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="icon">!</div>
+                    <h3>Desafío al Estado de Derecho</h3>
+                    <p>Operan fuera del marco legal formal, subvirtiendo activamente la autoridad estatal y el imperio de la ley</p>
+                </div>
+                <div class="objective-card">
+                    <div class="icon">⚡</div>
+                    <h3>Generación de Violencia</h3>
+                    <p>Crean ciclos de violencia que erosionan el tejido social y desafían el monopolio estatal de la fuerza</p>
+                </div>
+                <div class="objective-card">
+                    <div class="icon">⤴</div>
+                    <h3>Normalización de la Ilegalidad</h3>
+                    <p>Erosionan la confianza en las instituciones legales y cambian las percepciones sobre lo aceptable</p>
+                </div>
+                <div class="objective-card">
+                    <div class="icon">⮔</div>
+                    <h3>Perpetuación de la Exclusión</h3>
+                    <p>Refuerzan ciclos de pobreza, marginalización social y dependencia de actores criminales</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Preguntas y Discusión -->
+        <div class="slide">
+            <h2>Preguntas y Discusión</h2>
+            <div class="question-mark">?</div>
+            <h3>Espacio para preguntas del público y discusión en clase</h3>
+            <div class="final-question">
+                <p><strong>¿Cómo podemos fortalecer la gobernanza para combatir efectivamente estos sistemas de extorsión?</strong></p>
+                <br>
+                <p style="font-size: 0.95rem; color: #666666;">
+                    Reflexionemos sobre las estrategias de intervención, prevención y las políticas públicas necesarias para abordar las causas estructurales de estos fenómenos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Anterior</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Siguiente →</button>
+    </div>
+
+    <div class="university-logo">
+        HCLA - Heidelberg Center Lateinamerika<br>
+        Universität Heidelberg
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = index + 1;
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlideIndex + direction;
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlideIndex = newIndex;
+                showSlide(currentSlideIndex);
+            }
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === ' ') {
+                changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (event.key === 'Home') {
+                currentSlideIndex = 0;
+                showSlide(currentSlideIndex);
+            } else if (event.key === 'End') {
+                currentSlideIndex = totalSlides - 1;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        // Inicializar
+        showSlide(0);
+    </script>
+</body>
+</html>
